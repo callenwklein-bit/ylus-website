@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#062b3a">
+<title>YLUS Fishing</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#eef8fa;color:#082b38}.app{max-width:520px;margin:auto;min-height:100vh;background:#f8fcfd;padding-bottom:90px}
+header{background:linear-gradient(145deg,#06394b,#087ea4);color:#fff;padding:28px 22px 32px;border-radius:0 0 28px 28px}.brand{font-size:32px;font-weight:900;letter-spacing:4px}.tag{font-size:11px;letter-spacing:1.5px;color:#a9f0f5;font-weight:800}h1{font-size:30px;margin:25px 0 6px}.sub{opacity:.9;margin:0}
+main{padding:20px}.screen{display:none}.screen.active{display:block}.card{background:#fff;border-radius:20px;padding:20px;margin:14px 0;box-shadow:0 6px 22px #06394b12;border:1px solid #dcecef}.hero{background:linear-gradient(135deg,#087ea4,#062b3a);color:#fff}.hero h2{font-size:28px;margin:0 0 7px}.hero p{margin:0 0 16px}
+button,.btn{border:0;border-radius:999px;padding:13px 18px;background:#35c6d6;color:#062b3a;font-weight:900;font-size:15px;cursor:pointer}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.fish{font-size:40px}.pill{display:inline-block;background:#e5f7f9;padding:5px 10px;border-radius:99px;font-size:12px;font-weight:800}h2{margin:8px 0}.muted{color:#5f747c}.trip h3,.fishcard h3{margin:8px 0 4px}
+nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(520px,100%);background:#fff;border-top:1px solid #dcecef;display:grid;grid-template-columns:repeat(5,1fr);padding:9px 6px calc(9px + env(safe-area-inset-bottom));z-index:10}nav button{background:none;color:#58717a;padding:7px 2px;border-radius:12px;font-size:11px}.navicon{display:block;font-size:21px}.activeNav{color:#087ea4!important;background:#e8f8fa!important}input{width:100%;padding:13px;border:1px solid #cfe2e6;border-radius:12px;margin:8px 0;font-size:16px}
+</style>
+</head>
+<body>
+<div class="app">
+<header><div class="brand">YLUS</div><div class="tag">YOUNG LEGENDS USING SKILL</div><h1>Welcome, Legend 🎣</h1><p class="sub">Get out there. Cast a line. Make the catch.</p></header>
+<main>
+<section id="home" class="screen active"><div class="card hero"><h2>Ready to go fishing?</h2><p>Check out YLUS trips and find your next adventure.</p><button onclick="show('trips')">VIEW TRIPS 🎣</button></div><h2>Quick access</h2><div class="grid"><div class="card" onclick="show('species')"><div class="fish">🐟</div><b>Fish Species</b><p class="muted">Explore targets</p></div><div class="card" onclick="show('catch')"><div class="fish">📸</div><b>Catch Log</b><p class="muted">Record your catches</p></div></div></section>
+<section id="trips" class="screen"><h2>🎣 Fishing Trips</h2><p class="muted">Pick an adventure.</p><div class="card trip"><span class="pill">COMING SOON</span><h3>🌅 Sunrise Fishing</h3><p>Start the day on the water and chase the early bite.</p></div><div class="card trip"><span class="pill">COMING SOON</span><h3>🌊 Adventure Trip</h3><p>Explore new water, learn new skills and see what you can catch.</p></div><div class="card trip"><span class="pill">COMING SOON</span><h3>🌙 Golden Hour Trip</h3><p>Fish through the evening and finish with a great session.</p></div></section>
+<section id="species" class="screen"><h2>🐟 Fish Species</h2><p class="muted">Australian targets.</p><div class="grid"><div class="card fishcard"><div class="fish">🐟</div><h3>Bream</h3><p class="muted">Great sport fish for learning skills.</p></div><div class="card fishcard"><div class="fish">🐟</div><h3>Flathead</h3><p class="muted">Often found around estuaries and structure.</p></div><div class="card fishcard"><div class="fish">🐟</div><h3>Mulloway</h3><p class="muted">A prized challenge for anglers.</p></div><div class="card fishcard"><div class="fish">🐟</div><h3>Snapper</h3><p class="muted">A popular offshore target.</p></div><div class="card fishcard"><div class="fish">🐟</div><h3>Australian Salmon</h3><p class="muted">Fast and powerful sport fish.</p></div><div class="card fishcard"><div class="fish">🐟</div><h3>Tailor</h3><p class="muted">Exciting lure and bait fishing.</p></div></div></section>
+<section id="catch" class="screen"><h2>📸 Catch Log</h2><p class="muted">Keep track of your catches on this device.</p><div class="card"><input id="fishName" placeholder="Fish species"><input id="fishSize" placeholder="Size (e.g. 42 cm)"><button onclick="saveCatch()">SAVE CATCH</button></div><div id="catches"></div></section>
+<section id="profile" class="screen"><h2>👤 Profile</h2><div class="card"><h3>Young Legend</h3><p class="muted">YLUS member</p><p>🎣 Keep fishing. Keep learning. Keep improving.</p></div></section>
+</main>
+<nav><button class="activeNav" onclick="show('home',this)"><span class="navicon">🏠</span>Home</button><button onclick="show('trips',this)"><span class="navicon">🎣</span>Trips</button><button onclick="show('species',this)"><span class="navicon">🐟</span>Fish</button><button onclick="show('catch',this)"><span class="navicon">📸</span>Catches</button><button onclick="show('profile',this)"><span class="navicon">👤</span>Profile</button></nav>
+</div>
+<script>
+function show(id,btn){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('nav button').forEach(x=>x.classList.remove('activeNav'));if(btn)btn.classList.add('activeNav');else document.querySelector('nav button[onclick*="'+id+'"]').classList.add('activeNav');scrollTo(0,0)}
+function saveCatch(){const n=document.getElementById('fishName').value.trim(),s=document.getElementById('fishSize').value.trim();if(!n)return;const c=JSON.parse(localStorage.getItem('ylusCatches')||'[]');c.unshift({n,s});localStorage.setItem('ylusCatches',JSON.stringify(c));document.getElementById('fishName').value='';document.getElementById('fishSize').value='';renderCatches()}
+function renderCatches(){const c=JSON.parse(localStorage.getItem('ylusCatches')||'[]');document.getElementById('catches').innerHTML=c.map(x=>'<div class="card"><b>🐟 '+x.n+'</b><p class="muted">'+(x.s||'Size not recorded')+'</p></div>').join('')||'<p class="muted">No catches logged yet.</p>'}renderCatches();
+</script>
+</body>
+</html>
